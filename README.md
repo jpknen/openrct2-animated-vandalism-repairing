@@ -4,16 +4,16 @@ OpenRCT2 plugin for repairing the vandalized additions with random repairing ani
 
 Player can give new order for mechanics (Fix additions).
 
-![openrct2-animated-vandalism-repairing-111](https://github.com/jpknen/openrct2-animated-vandalism-repairing/assets/175154408/de565205-3349-4f78-8634-0884bfcab8ab)
+![openrct2-animated-vandalism-repairing-12-1111](https://github.com/user-attachments/assets/6ebfc1f3-67f5-475f-86c6-f963ff454683)
 
 ### Features:
 
 - Mechanics will repair vandalized additions (benches, lamps, trash bins ..) a bit more realistic and automated way with random repairing animation
 - Repairing will cost normal fee of the addition
 - Repairing lasts the length of the animation
-- Player can select mechanics to do `Inspect rides (IR), Fix rides (FR), Fix additions (FA)` and give them different uniform color depending on are they selected to repair additions
+- Player can select mechanics to do `Inspect rides (IR), Fix rides (FR), Fix additions (FA)` and give them different uniform color depending on are they selected to fix additions
 
-[openrct2-animated-vandalism-repairing-111.webm](https://github.com/jpknen/openrct2-animated-vandalism-repairing/assets/175154408/53f4a84d-af8e-4bdd-88ef-9ae3f841600b)
+[openrct2-animated-vandalism-repairing-12-11.webm](https://github.com/user-attachments/assets/eac141bf-b88f-49e2-9cf5-c69c88520370)
 
 ### Notes:
 
