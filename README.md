@@ -2,11 +2,15 @@
 
 OpenRCT2 plugin for repairing the vandalized additions with random repairing animations.
 
+![openrct2-animated-vandalism-repairing-1 2 1](https://github.com/user-attachments/assets/004cce34-9d82-4aff-8f3b-35a7fc3495e9)
+
 ### Features:
 
 - Mechanics will repair vandalized additions (benches, lamps, trash bins ..) a bit more realistic and automated way with random repairing animation
 - Repairing will cost normal fee of the addition
 - Repairing lasts the length of the animation
+
+[openrct2-animated-vandalism-repairing-1.2.1.webm](https://github.com/user-attachments/assets/3d52b0eb-43b2-4519-8d1d-b950269b8421)
 
 ### Notes:
 
@@ -16,4 +20,4 @@ Plugin works with OpenRCT2 `v0.4.12` or later.
 
 ### Install:
 
-Just copy the latest [release](https://github.com/jpknen/openrct2-animated-vandalism-repairing/releases/) into to your OpenRCT2 plugin folder `C:/Users/[name]/Documents/OpenRCT2/plugin`
+Copy the latest [release](https://github.com/jpknen/openrct2-animated-vandalism-repairing/releases/) into to your OpenRCT2 plugin folder `C:/Users/[name]/Documents/OpenRCT2/plugin`
