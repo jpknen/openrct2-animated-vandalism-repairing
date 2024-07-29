@@ -1,0 +1,38 @@
+{
+	"name": "openrct2-animated-vandalism-repairing",
+	"version": "1.2.1",
+	"type": "module",
+	"directories": {
+		"lib": "lib"
+	},
+	"scripts": {
+		"bundle": "esbuild ./src/plugin.ts --bundle --target=es6 --tree-shaking=true --outfile=./build/plugin-bundled.js",
+		"transpile": "babel ./build/plugin-bundled.js --out-file ./build/plugin-bundled-es5.js",
+		"minify": "terser ./build/plugin-bundled-es5.js --compress --mangle --output ./build/openrct2-animated-vandalism-repairing.js",
+		"build": "npm run bundle && npm run transpile && npm run minify",
+		"copy": "cp ./build/openrct2-animated-vandalism-repairing.js /c/Users/pet/Documents/OpenRCT2/plugin",
+		"buildncopy": "npm run build && npm run copy"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "MIT",
+	"description": "",
+	"devDependencies": {
+		"@babel/cli": "^7.24.8",
+		"@babel/core": "^7.24.9",
+		"@babel/preset-env": "^7.24.8",
+		"esbuild": "^0.23.0",
+		"terser": "^5.31.3"
+	},
+	"babel": {
+		"presets": [
+			[
+				"@babel/preset-env",
+				{
+					"targets": {},
+					"loose": true
+				}
+			]
+		]
+	}
+}
