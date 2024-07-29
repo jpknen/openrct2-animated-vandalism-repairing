@@ -2,18 +2,11 @@
 
 OpenRCT2 plugin for repairing the vandalized additions with random repairing animations.
 
-Player can give new order for mechanics (Fix additions).
-
-![openrct2-animated-vandalism-repairing-12-1111](https://github.com/user-attachments/assets/6ebfc1f3-67f5-475f-86c6-f963ff454683)
-
 ### Features:
 
 - Mechanics will repair vandalized additions (benches, lamps, trash bins ..) a bit more realistic and automated way with random repairing animation
 - Repairing will cost normal fee of the addition
 - Repairing lasts the length of the animation
-- Player can select mechanics to do `Inspect rides (IR), Fix rides (FR), Fix additions (FA)` and give them different uniform color depending on are they selected to fix additions
-
-[openrct2-animated-vandalism-repairing-12-11.webm](https://github.com/user-attachments/assets/eac141bf-b88f-49e2-9cf5-c69c88520370)
 
 ### Notes:
 
@@ -21,36 +14,6 @@ Only mechanics are able to play fixing animations as far i know so for example h
 
 Plugin works with OpenRCT2 `v0.4.12` or later.  
 
-Just copy the latest [release](https://github.com/jpknen/openrct2-animated-vandalism-repairing/releases/) into to your OpenRCT2 plugin folder `C:/Users/.../Documents/OpenRCT2/plugin`
+### Install:
 
-### Versions:
-
-### 1.2
-
-- Rewrite most of the code
-- Data is saved in to parkStorage
-- Added view of the workers list where player can set  orders
-- Added uniform coloring option
-- Removed the timer option and decided to let the animation length act as timer
-- Removed debug window
-
-### 1.1
-
-- Slight code structure changes
-- Some minor fixes for multiple workers sharing same tile but on different z axis value
-- Invisible additions on path intersections is now ignored
-- Added basic list view of mechanics stats on debug window
-
-### 1.0
-
--
-
-### Maybe to do's:
-
-- Repair only when not heading for ride inspections (it can be time consuming if there is lot of vandalism on the path to ride)
-- Better path finding to actually head for broken additions if worker is set to be more of an addition fixer 
-
-### Things to fix:
-
-- Worker might get stuck in the air if its moved just in the end of the repair
-- Temp direction should be facing towards addition rather than random left/right, this is easy to fix by checking the element.edges
+Just copy the latest [release](https://github.com/jpknen/openrct2-animated-vandalism-repairing/releases/) into to your OpenRCT2 plugin folder `C:/Users/[name]/Documents/OpenRCT2/plugin`
