@@ -7,14 +7,14 @@ OpenRCT2 plugin for repairing the vandalized additions with random repairing ani
 ### Features:
 
 - Mechanics will repair vandalized additions (benches, lamps, trash bins ..) a bit more realistic and automated way with random repairing animation
-- Repairing will cost normal fee of the addition
+- Repairing will cost normal fee of the addition (mechanics will not repair if there is not enough money)
 - Repairing lasts the length of the animation
 
 [openrct2-animated-vandalism-repairing-1.2.1.webm](https://github.com/user-attachments/assets/3d52b0eb-43b2-4519-8d1d-b950269b8421)
 
 ### Notes:
 
-Only mechanics are able to play fixing animations as far i know so for example handyman is not very suitable for the task. And anyway mechanics carry a toolbox instead of a sweeping brush, which obviously cant fix much.
+Only mechanics are able to play fixing animations as far i know so for example handyman is not very suitable for the task.
 
 Plugin works with OpenRCT2 `v0.4.12` or later.  
 
