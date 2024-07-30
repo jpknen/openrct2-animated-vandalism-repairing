@@ -1,22 +1,21 @@
 // logic.ts
 
 import { animations, repairDirs } from "./conf";
-import { Worker, OccupiedTile, workers, occupiedTiles } from "./classes";
+import { workers, occupiedTiles } from "./classes";
 
 let tick_repairAdditions: number = 0;
 
-function RandomIndex(lastIndex: number, max: number) : number {
+function RandomIndex(lastIndex: number, max: number): number {
 	let randomIndex = Math.floor(Math.random() * max);
 	if (randomIndex == lastIndex)
 		return RandomIndex(lastIndex, max);
 	return randomIndex;
 }
 
-// return worker id or null instead of true
+// return worker id instead of true
 export function IsTileOccupied(xyz: { x: number, y: number, z: number }): number {
-	let occupiedTile: Record<number, OccupiedTile> = occupiedTiles.data;
-	for (let key in occupiedTile)
-		if (xyz.x == occupiedTile[key].x && xyz.y == occupiedTile[key].y && xyz.z == occupiedTile[key].z)
+	for (let key in occupiedTiles.data)
+		if (xyz.x == occupiedTiles.data[key].x && xyz.y == occupiedTiles.data[key].y && xyz.z == occupiedTiles.data[key].z)
 			return Number(key);
 	return -1;
 }
@@ -32,7 +31,7 @@ export function Release(id: number): void {
 	}
 }
 
-export function UpdateWorkersData() : void {
+export function UpdateWorkersData(): void {
 
 	let workerIds: number[] = [];
 
@@ -40,8 +39,8 @@ export function UpdateWorkersData() : void {
 
 	// get in game worker ids to list
 	staff.forEach(staffMember => {
-		if (staffMember.staffType == "mechanic")
-			workerIds.push(staffMember.id as number);
+		if (staffMember.staffType == "mechanic") 
+			workerIds.push(Number(staffMember.id));
 	});
 
 	// loop workerIds and add new worker in to workersData if not already in there
@@ -52,44 +51,39 @@ export function UpdateWorkersData() : void {
 
 	// remove workers from workers.data if they does not exist anymore in game
 	for (var key in workers.data) {
-		if (workers.data.hasOwnProperty(key) && workerIds.indexOf(Number(key)) === -1) 
+		if (workers.data.hasOwnProperty(key) && workerIds.indexOf(Number(key)) === -1)
 			delete workers.data[key];
 	}
 
 }
 
-export function RepairAdditions() : void {
+export function RepairAdditions(): void {
 
 	tick_repairAdditions++;
 
 	if (tick_repairAdditions >= 30) {
 
-		let workersAll: Record<number, Worker> = workers.data;
-
-		for (let id in workersAll) {
+		for (let id in workers.data) {
 
 			// could be something else
 			if (park.cash < 100) {
 
 				// if theres no cash and worker is stuck repairing, release it
-				if (workersAll[id].isRepairing)
+				if (workers.data[id].isRepairing)
 					Release(Number(id));
 
 				continue;
 			}
 
 			// if worker is not marked as addition fixer, continue to next
-			if (!workersAll[id].isAdditionFixer)
+			if (!workers.data[id].isAdditionFixer)
 				continue;
 
-			let entity: Entity = map.getEntity(Number(id));
-			let staffMember: Staff = <Staff>entity;
+			let staffMember: Staff = <Staff>map.getEntity(Number(id));
 
 			let tile: Tile = map.getTile(staffMember.x / 32, staffMember.y / 32);
 
-			for (let i = 0; i < tile.numElements; i++) {
-
-				let element: TileElement = tile.getElement(i);
+			tile.elements.forEach(element => {
 
 				if (
 					element.type == "footpath" && element.isAdditionBroken &&
@@ -100,24 +94,24 @@ export function RepairAdditions() : void {
 				) {
 
 					// check if staffMember is not repairing
-					if (!workersAll[id].isRepairing) {
+					if (!workers.data[id].isRepairing) {
 
 						// check if tile is already being fixed by other workers
 						const occupiedId: number = IsTileOccupied({ x: tile.x, y: tile.y, z: element.baseZ });
-	
+
 						// start repairing the addition and set the repair animation if tile not occupiedId
 						if (occupiedId == -1) {
 
-							workersAll[id].orgDirection = staffMember.direction; // save original direction
-							workersAll[id].isRepairing = true;
-							workersAll[id].animationOffset = 0;
+							workers.data[id].orgDirection = staffMember.direction; // save original direction
+							workers.data[id].isRepairing = true;
+							workers.data[id].animationOffset = 0;
 
-							let lastAnimationIndex = workersAll[id].lastAnimationIndex;
+							let lastAnimationIndex = workers.data[id].lastAnimationIndex;
 							let newAnimationIndex = RandomIndex(lastAnimationIndex, animations.length);
-							workersAll[id].lastAnimationIndex = newAnimationIndex;
+							workers.data[id].lastAnimationIndex = newAnimationIndex;
 
-							staffMember.animation = animations[newAnimationIndex] as StaffAnimation;
-							staffMember.direction = repairDirs[element.edges][Math.floor(Math.random() * repairDirs[element.edges].length)] as Direction;
+							staffMember.animation = animations[newAnimationIndex];
+							staffMember.direction = repairDirs[element.edges][Math.floor(Math.random() * repairDirs[element.edges].length)];
 							staffMember.setFlag("positionFrozen", true);
 
 							// set this tile as occupied
@@ -127,12 +121,12 @@ export function RepairAdditions() : void {
 					}
 
 					// loop this as long as animationOffset is set and finally repair & release the staffMember
-					if (workersAll[id].isRepairing) {
+					if (workers.data[id].isRepairing) {
 
-						if (staffMember.animationOffset > workersAll[id].animationOffset)
-							workersAll[id].animationOffset = staffMember.animationOffset;
+						if (staffMember.animationOffset > workers.data[id].animationOffset)
+							workers.data[id].animationOffset = staffMember.animationOffset;
 
-						if (staffMember.animationOffset < workersAll[id].animationOffset) {
+						if (staffMember.animationOffset < workers.data[id].animationOffset) {
 
 							context.executeAction(
 								"footpathadditionplace",
@@ -144,21 +138,22 @@ export function RepairAdditions() : void {
 								}
 							);
 
-							workersAll[id].isRepairing = false;
-							workersAll[id].fixedAdditions++;
-							workersAll[id].animationOffset = 0;
+							workers.data[id].isRepairing = false;
+							workers.data[id].fixedAdditions++;
+							workers.data[id].animationOffset = 0;
 
 							staffMember.animation = "walking";
-							staffMember.direction = workersAll[id].orgDirection as Direction; // set back original direction
+							staffMember.direction = workers.data[id].orgDirection; // set back original direction
 							staffMember.setFlag("positionFrozen", false);
 
 							occupiedTiles.delete(Number(id));
-	
+
 						}
 
 					}
 				}
-			}
+			});
+
 		}
 
 		tick_repairAdditions = 0;

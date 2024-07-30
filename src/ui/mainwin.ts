@@ -48,12 +48,8 @@ if (globals.isDebug) {
 		x: 5, y: 90, width: 190, height: 20,
 		text: "clear",
 		onClick: function () {
-			for (let id in workers.data)
-				Release(Number(id));
-			for (let id in workers.data){
-				workers.delete(Number(id));
-				occupiedTiles.delete(Number(id));
-			}
+			workers.data = {};
+			occupiedTiles.data = {};
 			UpdateWorkersData();
 		}
 	});

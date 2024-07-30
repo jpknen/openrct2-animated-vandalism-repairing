@@ -14,15 +14,16 @@
 		"buildncopy": "npm run build && npm run copy"
 	},
 	"keywords": [],
-	"author": "",
+	"author": "jpknen",
 	"license": "MIT",
 	"description": "",
 	"devDependencies": {
 		"@babel/cli": "^7.24.8",
 		"@babel/core": "^7.24.9",
-		"@babel/preset-env": "^7.24.8",
+		"@babel/preset-env": "^7.25.0",
 		"esbuild": "^0.23.0",
-		"terser": "^5.31.3"
+		"terser": "^5.31.3",
+		"typescript": "^5.5.4"
 	},
 	"babel": {
 		"presets": [

@@ -5,7 +5,7 @@ import { storage } from "./storage";
 export enum StorageType { sharedStorage = "sharedStorage", parkStorage = "parkStorage" }
 
 export interface StorageDefaults {
-	[storageType: string]: { [memberName: string]: { path: string; value: any } };
+	[storageType: string]: { [memberName: string]: { path: string; value: any } }
 }
 
 export class Worker {
@@ -14,7 +14,7 @@ export class Worker {
 	public fixedAdditions: number = 0;
 	public animationOffset: number = 0;
 	public lastAnimationIndex: number = 0;
-	public orgDirection: number = 0;
+	public orgDirection: Direction = 0;
 }
 
 export class OccupiedTile {
