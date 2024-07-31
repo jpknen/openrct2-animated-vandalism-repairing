@@ -18,6 +18,8 @@ Only mechanics are able to play fixing animations as far i know so for example h
 
 Plugin works with OpenRCT2 `v0.4.12` or later.  
 
+If you enjoy watching while mechanics are repairing the additions but want to choose which mechanics will repair them, check out the [mechanic manager +](https://github.com/jpknen/openrct2-mechanic-manager-plus) plugin.
+
 ### Install:
 
 Copy the latest [release](https://github.com/jpknen/openrct2-animated-vandalism-repairing/releases/) into to your OpenRCT2 plugin folder `C:/Users/[name]/Documents/OpenRCT2/plugin`
